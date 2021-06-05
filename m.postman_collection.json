@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "8ae70373-0ffe-4969-b636-b8d79fb368be",
+		"name": "m",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registro",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"josea21\",\r\n    \"password\":\"2112\",\r\n    \"nombre\":\"Jose Angel\",\r\n    \"apellidos\":\"Hernandez Casares\",\r\n    \"dni\":\"01122171801\",\r\n    \"telfi\":\"52282769\",\r\n    \"telmov\":\"59634913\",\r\n    \"email\":\"josejahc2112@gmail.com\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/singup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"singup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"josea21\",\r\n    \"password\":\"2112\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ejemplo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVXNlciI6eyJJZCI6NSwiVXN1YXJpbyI6Impvc2VhMjEiLCJOb21icmUiOiJKb3NlIEFuZ2VsIiwiVG9rZW4iOm51bGwsIkNvZGlnbyI6MiwiTml2ZWxBY2Nlc28iOjB9LCJpYXQiOjE2MjI4NjU0ODZ9.M6_5EDBe0gs6wQO-gJqrhwKwhGWEx6a5U2f_AXgtJrs\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/getlistinvitado",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"getlistinvitado"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

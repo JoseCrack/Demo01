@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    <div id="container"></div>
+    <form id="form" action="#">
+        <input type="text" name="user" id="user" required>
+        <input type="password" name="pass" id="pass" required>
+        <input type="text" name="name" id="name" required>
+        <input type="submit" id="btnsub">        
+    </form>
+   <script>
+       const form = document.getElementById("form");
+       const pass = document.getElementById("pass");
+       const user = document.getElementById("user");
+       const name = document.getElementById("name");
+       const container = document.getElementById("container");
+    form.addEventListener("submit",(e)=>{
+        e.preventDefault();
+        if (pass.value == ""|| user.value == "" || name.value == "") {
+            container.innerHTML = "<h4>Faltan campos sin rellenar</h4>"
+        } else {
+            container.innerHTML = "<h4>Espere...</h4>";
+            postData("/api/singup",{user : user.value,pass: pass.value,name :name.value})
+            .then(data => {
+                if (data.error) {
+                    container.innerHTML = "<h4>" + data.error + "</h4>";
+                } else {
+                    container.innerHTML = "<h4>Registrado...</h4>";
+                    window.location = "/entrar"
+                }
+            })
+        }
+    })
+
+        async function postData(url = '', data = {}) {            
+            // Opciones por defecto estan marcadas con un *
+            const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                   //  'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+   </script>
+</body>
+</html>

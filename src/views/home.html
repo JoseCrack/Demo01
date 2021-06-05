@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+</head>
+<body>
+    <h1>Bienvenido al convertidor online</h1>
+    <div id="content"></div>
+   
+    <script>
+        let closed = {};
+        const content = document.getElementById("content");
+      const session =  getSession("ConvertSession")
+      if (session.error) {
+          content.innerHTML = " <a href='/entrar'>Entrar</a>"
+          content.innerHTML += " <a href='/register'>Registrar</a>"
+      }else{
+          content.innerHTML = " <h4 >"+session.nameUser+"</h4>"
+          content.innerHTML += " <a href='/' id='closed'>Cerrar</a>"
+          closed = document.getElementById("closed");
+          console.log(closed)
+          closed.addEventListener("click",e=>{
+            e.preventDefault();
+            logout("ConvertSession")
+            console.log("Closed")
+          })
+      }
+
+         function getSession(key) {
+            if (window.sessionStorage) {                
+                const session = sessionStorage.getItem(key);
+                if (session) {
+                    console.log(session);
+                    return JSON.parse(session)
+                }else{
+                    return {error : "err"}
+                }
+                console.log(nombre);
+               // sessionStorage.removeItem("nombre");
+            }
+        }
+    function logout(key) {
+        sessionStorage.removeItem(key);
+        window.location = "/"
+    }
+   </script>
+</body>
+</html>
